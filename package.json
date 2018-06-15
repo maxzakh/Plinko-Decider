@@ -10,5 +10,8 @@
     "Game"
   ],
   "author": "Max Z",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "matter-js": "^0.14.2"
+  }
 }
