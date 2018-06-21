@@ -23,7 +23,7 @@ function createColumn(x, y, r) {
 function initScene(columns, width, height) {  
     let COLUMNS_X = 4;
     let COLUMNS_Y = 4;
-    const COLUMN_WIDTH = 30;
+    const COLUMN_WIDTH = 10;
 
     let offset_x = width / COLUMNS_X;
     let offset_y = height / COLUMNS_Y;

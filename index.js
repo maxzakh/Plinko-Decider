@@ -1,9 +1,10 @@
-const SCENE_SIZE = 400;
+const SCENE_SIZE_X = 300;
+const SCENE_SIZE_Y = 700;
+
 const GROUND_HEIGHT = 100; 
 
 // module aliases
 var Engine = Matter.Engine,
-    // Render = Matter.Render,
     World = Matter.World,
     Bodies = Matter.Bodies;
 
@@ -14,22 +15,36 @@ var columns = [];
 
 var ground;
 
+function createDebugRender() {
+    // Create debug render
+    var render = Matter.Render.create({
+        element: document.getElementById("wrapper"),
+        engine: engine,
+        options: {
+            width: SCENE_SIZE_X,
+            height: SCENE_SIZE_Y,
+            showVelocity: true
+        }
+    });
+    Matter.Render.run(render);
+}
+
 function setup() {
-    createCanvas(SCENE_SIZE, SCENE_SIZE);
+    createCanvas(SCENE_SIZE_X, SCENE_SIZE_Y);
     engine = Engine.create();
     world = engine.world;
 
-    //Engine.run(engine);
+    // createDebugRender();
 
     // Create ground
     var options = {
         isStatic: true
     }
-    ground = Bodies.rectangle(0, SCENE_SIZE - GROUND_HEIGHT, SCENE_SIZE, GROUND_HEIGHT, options);
+    ground = Bodies.rectangle(0 + SCENE_SIZE_X / 2, SCENE_SIZE_Y - GROUND_HEIGHT + GROUND_HEIGHT / 2, SCENE_SIZE_X, GROUND_HEIGHT, options);
     World.add(world, ground);
 
     // Init Scene
-    initScene(columns, SCENE_SIZE, SCENE_SIZE - GROUND_HEIGHT);
+    initScene(columns, SCENE_SIZE_X, SCENE_SIZE_Y - GROUND_HEIGHT);
 }
 
 function mousePressed() {
@@ -51,10 +66,9 @@ function draw() {
     push();
     noStroke(255);
     fill(color(0, 200, 200));
-    // rectMode(CENTER);
+    rectMode(CENTER);
     rect(ground.position.x, ground.position.y, width, GROUND_HEIGHT);
     pop();
-
 }
 
 function main() {
