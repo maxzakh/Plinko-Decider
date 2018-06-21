@@ -1,4 +1,5 @@
 const SCENE_SIZE = 400;
+const GROUND_HEIGHT = 100; 
 
 // module aliases
 var Engine = Matter.Engine,
@@ -17,15 +18,18 @@ function setup() {
     createCanvas(SCENE_SIZE, SCENE_SIZE);
     engine = Engine.create();
     world = engine.world;
+
     //Engine.run(engine);
+
+    // Create ground
     var options = {
         isStatic: true
     }
-    ground = Bodies.rectangle(200, height, width, 100, options);
-
+    ground = Bodies.rectangle(0, SCENE_SIZE - GROUND_HEIGHT, SCENE_SIZE, GROUND_HEIGHT, options);
     World.add(world, ground);
 
-    initScene(columns);
+    // Init Scene
+    initScene(columns, SCENE_SIZE, SCENE_SIZE - GROUND_HEIGHT);
 }
 
 function mousePressed() {
@@ -47,8 +51,8 @@ function draw() {
     push();
     noStroke(255);
     fill(color(0, 200, 200));
-    rectMode(CENTER);
-    rect(ground.position.x, ground.position.y, width, 100);
+    // rectMode(CENTER);
+    rect(ground.position.x, ground.position.y, width, GROUND_HEIGHT);
     pop();
 
 }

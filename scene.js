@@ -20,25 +20,27 @@ function createColumn(x, y, r) {
 
 }
 
-function initScene(columns) {
+function initScene(columns, width, height) {  
     let COLUMNS_X = 4;
     let COLUMNS_Y = 4;
     const COLUMN_WIDTH = 30;
 
-    let offset_x = SCENE_SIZE / COLUMNS_X;
-    let offset_y = SCENE_SIZE / COLUMNS_Y;
+    let offset_x = width / COLUMNS_X;
+    let offset_y = height / COLUMNS_Y;
 
     // offset_x = (SCENE_SIZE - COLUMNS_X * COLUMN_WIDTH) / COLUMNS_X;
     // offset_y = 0;
 
     for (let y = 0; y < COLUMNS_Y; y++) {
-        let currentY = offset_y  * y;
+        let currentY = offset_y / 2 + offset_y  * y;
         let offsetRow = 0;
+        let columnX = COLUMNS_X;
         if (y % 2 == 0) {
             offsetRow = offset_x / 2;
+            columnX = COLUMNS_X - 1;
         }
 
-        for (let x = 0; x < COLUMNS_X; x++) {
+        for (let x = 0; x < columnX; x++) {
             let currentX = offsetRow + offset_x / 2 + offset_x * x;
             let column = new createColumn(currentX, currentY, COLUMN_WIDTH);
             columns.push(column);
