@@ -32,13 +32,15 @@ function initScene(columns) {
     // offset_y = 0;
 
     for (let y = 0; y < COLUMNS_Y; y++) {
+        let currentY = offset_y  * y;
+        let offsetRow = 0;
+        if (y % 2 == 0) {
+            offsetRow = offset_x / 2;
+        }
+
         for (let x = 0; x < COLUMNS_X; x++) {
-            let row = offset_x / 2 + offset_x * x;
-            let col = offset_y  * y;
-            if (y % 2 == 0) {
-                row += offset_x / 2;
-            }
-            let column = new createColumn(row, col, COLUMN_WIDTH);
+            let currentX = offsetRow + offset_x / 2 + offset_x * x;
+            let column = new createColumn(currentX, currentY, COLUMN_WIDTH);
             columns.push(column);
             World.add(world, column.body);
         }
