@@ -13,6 +13,8 @@
   "author": "Max Z",
   "license": "ISC",
   "dependencies": {
-    "matter-js": "^0.14.2"
+    "@types/matter-js": "^0.10.1",
+    "matter-js": "^0.14.2",
+    "p5": "^0.6.1"
   }
 }
