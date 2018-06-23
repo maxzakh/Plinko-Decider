@@ -3,15 +3,14 @@
 const SCENE_SIZE_X = 300;
 const SCENE_SIZE_Y = 700;
 
-const GROUND_HEIGHT = 100; 
+const GROUND_HEIGHT = 20; 
 
 var matterEngine: Matter.Engine;
 var world: Matter.World;
 var boxes: Box[] = [];
-var columns: Column[] = [];
 
-
-var ground: Ground;
+type Shape = Column | Ground;
+var columns: Shape[] = [];
 
 function createDebugRender(engine: Matter.Engine) {
     // Create debug render
@@ -47,8 +46,6 @@ function my_draw(): void {
     Matter.Engine.update(matterEngine);
 
     boxes.forEach(box => box.show());
-
-    ground.show();
 
     columns.forEach(element => {
         element.show();

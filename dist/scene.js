@@ -23,6 +23,8 @@ var Column = /** @class */ (function () {
 }());
 var Ground = /** @class */ (function () {
     function Ground(x, y, w, h, world) {
+        this.w = w;
+        this.h = h;
         var options = {
             isStatic: true
         };
@@ -34,11 +36,22 @@ var Ground = /** @class */ (function () {
         noStroke();
         fill(color(0, 200, 200));
         rectMode(CENTER);
-        rect(this.body.position.x, this.body.position.y, width, GROUND_HEIGHT);
+        rect(this.body.position.x, this.body.position.y, this.w, this.h);
         pop();
     };
     return Ground;
 }());
+function createBuckets(x, y, w, h, world, columns) {
+    var SHAPE_W = 20;
+    var COUNT = 3;
+    var a = SHAPE_W * COUNT;
+    var b = (w - a) / (COUNT - 1);
+    var c = SHAPE_W + b;
+    for (var i = 0; i < COUNT; i++) {
+        var bucket = new Ground(i * c, y - h, SHAPE_W, h, world);
+        columns.push(bucket);
+    }
+}
 function initScene(columns, width, height) {
     var COLUMNS_X = 4;
     var COLUMNS_Y = 4;
@@ -65,6 +78,8 @@ function initScene(columns, width, height) {
     // let column = new createColumn(SCENE_SIZE / 2, SCENE_SIZE / 2, 100);
     // columns.push(column);
     // Matter.World.add(world, column.body);
-    ground = new Ground(0, SCENE_SIZE_Y - GROUND_HEIGHT, SCENE_SIZE_X, GROUND_HEIGHT, world);
+    var ground = new Ground(0, SCENE_SIZE_Y - GROUND_HEIGHT, SCENE_SIZE_X, GROUND_HEIGHT, world);
+    columns.push(ground);
+    createBuckets(0, SCENE_SIZE_Y - GROUND_HEIGHT, SCENE_SIZE_X, 50, world, columns);
 }
 //# sourceMappingURL=scene.js.map

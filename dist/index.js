@@ -2,12 +2,11 @@
 /// <reference types = "./p5/lib/p5.global-mode"/>
 var SCENE_SIZE_X = 300;
 var SCENE_SIZE_Y = 700;
-var GROUND_HEIGHT = 100;
+var GROUND_HEIGHT = 20;
 var matterEngine;
 var world;
 var boxes = [];
 var columns = [];
-var ground;
 function createDebugRender(engine) {
     // Create debug render
     var render = Matter.Render.create({
@@ -35,7 +34,6 @@ function my_draw() {
     background(51);
     Matter.Engine.update(matterEngine);
     boxes.forEach(function (box) { return box.show(); });
-    ground.show();
     columns.forEach(function (element) {
         element.show();
     });
