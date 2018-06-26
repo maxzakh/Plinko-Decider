@@ -60,7 +60,7 @@ function createBuckets(x: number, y: number, w: number, h: number, world: Matter
 }
 
 function initScene(columns: Shape[], width: number, height: number) {  
-    let COLUMNS_X = 4;
+    let COLUMNS_X = 5;
     let COLUMNS_Y = 4;
     const COLUMN_WIDTH = 10;
 
@@ -74,7 +74,7 @@ function initScene(columns: Shape[], width: number, height: number) {
         let currentY = offset_y / 2 + offset_y  * y;
         let offsetRow = 0;
         let columnX = COLUMNS_X;
-        if (y % 2 == 0) {
+        if ((y + 1) % 2 == 0) {
             offsetRow = offset_x / 2;
             columnX = COLUMNS_X - 1;
         }

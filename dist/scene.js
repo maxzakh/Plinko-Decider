@@ -53,7 +53,7 @@ function createBuckets(x, y, w, h, world, columns) {
     }
 }
 function initScene(columns, width, height) {
-    var COLUMNS_X = 4;
+    var COLUMNS_X = 5;
     var COLUMNS_Y = 4;
     var COLUMN_WIDTH = 10;
     var offset_x = width / COLUMNS_X;
@@ -64,7 +64,7 @@ function initScene(columns, width, height) {
         var currentY = offset_y / 2 + offset_y * y;
         var offsetRow = 0;
         var columnX = COLUMNS_X;
-        if (y % 2 == 0) {
+        if ((y + 1) % 2 == 0) {
             offsetRow = offset_x / 2;
             columnX = COLUMNS_X - 1;
         }
